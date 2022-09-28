@@ -18,7 +18,7 @@ RUN apt-get -qq update && \
     curl -s https://get.sdkman.io | bash && \
     source "~/.sdkman/bin/sdkman-init.sh" && \
     curl -s https://get.sdkman.io | bash && \
-    source "~/.sdkman/bin/sdkman-init.sh" && \
+    source "/root/.sdkman/bin/sdkman-init.sh" && \
     sdk install grails 1.3.8 && \
     apt-get -qq -y purge gnupg software-properties-common curl zip unzip && \
     apt -y autoremove && \
