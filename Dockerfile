@@ -1,4 +1,4 @@
-from ubuntu:20.04
+from ubuntu:16.04
 RUN apt update -y
 RUN apt-get install -y software-properties-common unzip zip
 RUN add-apt-repository -y ppa:openjdk-r/ppa
