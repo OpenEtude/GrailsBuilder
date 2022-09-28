@@ -20,8 +20,6 @@ RUN apt-get -qq update && \
     echo "Package: zulu7-*\nPin: version 7.0.352-*\nPin-Priority: 1001" > /etc/apt/preferences && \
     apt-get -qq -y --no-install-recommends install zulu7-jdk=7.0.352-* zip unzip && \
     curl -s https://get.sdkman.io | bash && \
-    source "~/.sdkman/bin/sdkman-init.sh" && \
-    curl -s https://get.sdkman.io | bash && \
     . "/root/.sdkman/bin/sdkman-init.sh" && \
     sdk install grails 1.3.8 && \
     apt-get -qq -y purge gnupg software-properties-common curl zip unzip && \
