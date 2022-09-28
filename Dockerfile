@@ -26,8 +26,6 @@ RUN wget -q --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3
   rm -f "${DOWNLOAD_DIR}/jdk-7u80-linux-x64.tar.gz" && \
   mv "${JVM_DIR}/jdk1.7.0_80" "${JVM_DIR}/java-1.7.0_80-oracle-x64" && \
   ln -s "${JVM_DIR}/java-1.7.0_80-oracle-x64" "${JVM_DIR}/java-1.7.0-oracle-x64"
-ADD java-1.7.0-oracle-x64.jinfo ${JVM_DIR}/.java-1.7.0-oracle-x64.jinfo
-RUN cat "${JVM_DIR}/.java-1.7.0-oracle-x64.jinfo" | grep -E '^(jre|jdk|hl)' | awk '{print "/usr/bin/" $2 " " $2 " " $3 " 30 \n"}' | xargs -t -n4 sudo update-alternatives --install
 ENV JAVA_HOME ${JVM_DIR}/java-1.7.0-oracle-x64
 RUN curl -s https://get.sdkman.io | bash && \
  source "~/.sdkman/bin/sdkman-init.sh" && \
