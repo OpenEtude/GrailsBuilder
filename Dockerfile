@@ -20,11 +20,7 @@ RUN apt-get -qq update && \
     echo "Package: zulu7-*\nPin: version 7.0.352-*\nPin-Priority: 1001" > /etc/apt/preferences && \
     apt-get -qq -y --no-install-recommends install zulu7-jdk=7.0.352-* zip unzip && \
     curl -s https://get.sdkman.io | bash && \
-    . "/root/.sdkman/bin/sdkman-init.sh" && \
-    sdk install grails 1.3.8 && \
-    apt-get -qq -y purge gnupg software-properties-common curl zip unzip && \
-    apt -y autoremove && \
-    rm -rf /var/lib/apt/lists/* zulu-repo_${ZULU_REPO_VER}_all.deb
+    /bin/bash -c "source \"/root/.sdkman/bin/sdkman-init.sh\" && sdk install grails 1.3.8 && apt-get -qq -y purge gnupg software-properties-common curl zip unzip && apt -y autoremove && rm -rf /var/lib/apt/lists/* zulu-repo_${ZULU_REPO_VER}_all.deb"
 
 ENV JAVA_HOME=/usr/lib/jvm/zulu7-ca-amd64
 ENTRYPOINT ['grails', 'prod-war']
