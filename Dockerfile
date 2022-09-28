@@ -1,7 +1,7 @@
 from ubuntu:16.04
 RUN apt update -y
 RUN apt-get install -y software-properties-common unzip zip
-RUN add-apt-repository -y ppa:openjdk-r/ppa
+RUN add-apt-repository -y ppa:openjdk/ppa
 RUN apt update -y
 RUN apt-get install -y openjdk-7
 RUN curl -s https://get.sdkman.io | bash
