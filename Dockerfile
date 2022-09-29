@@ -3,9 +3,6 @@ FROM ubuntu:focal
 ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
 
 ARG ZULU_REPO_VER=1.0.0-3
-ARG GRAILS_VERSION=1.3.8
-ARG JAVA_MAJOR_VERSION=7
-ARG JDK_VERSION=7.0.352
 
 
 RUN apt-get -qq update && \
@@ -17,11 +14,11 @@ RUN apt-get -qq update && \
     apt-get -qq update && \
     apt-get -qq -y dist-upgrade && \
     mkdir -p /usr/share/man/man1 && \
-    echo "Package: zulu${JAVA_MAJOR_VERSION}-*\nPin: version JDK_VERSION-*\nPin-Priority: 1001" > /etc/apt/preferences && \
-    apt-get -qq -y --no-install-recommends install zulu${JAVA_MAJOR_VERSION}-jdk=JDK_VERSION-* zip unzip && \
+    echo "Package: zulu7-*\nPin: version 7.0.352-*\nPin-Priority: 1001" > /etc/apt/preferences && \
+    apt-get -qq -y --no-install-recommends install zulu7-jdk=7.0.352-* zip unzip && \
     curl -s https://get.sdkman.io | bash && \
-    /bin/bash -c "source \"/root/.sdkman/bin/sdkman-init.sh\" && sdk install grails $GRAILS_VERSION && apt-get -qq -y purge gnupg software-properties-common zip unzip && apt -y autoremove && rm -rf /var/lib/apt/lists/* zulu-repo_${ZULU_REPO_VER}_all.deb"
-ENV JAVA_HOME=/usr/lib/jvm/zulu${JAVA_MAJOR_VERSION}-ca-amd64
+    /bin/bash -c "source \"/root/.sdkman/bin/sdkman-init.sh\" && sdk install grails 1.3.8 && apt-get -qq -y purge gnupg software-properties-common zip unzip && apt -y autoremove && rm -rf /var/lib/apt/lists/* zulu-repo_${ZULU_REPO_VER}_all.deb"
+ENV JAVA_HOME=/usr/lib/jvm/zulu7-ca-amd64
 ENV JAVA_OPTS="-Dhttps.protocols=TLSv1.2 -Dorg.quartz.properties=classpath:quartz.properties -Dserver.tomcat.uri-encoding=utf-8 -Dstringchararrayaccessor.disabled=true -Djava.awt.headless=true -Duser.language=fr -Duser.country=FR -Dsqlfile.charset=UTF-8 -Dfile.encoding=UTF-8 -Duser.timezone=Etc/GMT-1 -server -Xms512m -XX:PermSize=128m -Xmx512m -XX:MaxPermSize=128m -Djava.net.preferIPv4Stack=true -Dsun.net.inetaddr.ttl=30 -noverify -Xshare:off -XX:+UseParallelGC"
 ENV PATH="$PATH:/root/.sdkman/candidates/grails/current/bin/"
 VOLUME /project/
