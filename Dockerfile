@@ -23,6 +23,6 @@ ENV JAVA_OPTS="-Dhttps.protocols=TLSv1.2 -Dorg.quartz.properties=classpath:quart
 ENV PATH="$PATH:/root/.sdkman/candidates/grails/current/bin/"
 VOLUME /project/
 VOLUME /root/.grails/
-VOLUME /root/.m2/
+VOLUME /root/.ivy2/
 WORKDIR /project/
 CMD grails prod-war
